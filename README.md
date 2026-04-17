@@ -6,23 +6,23 @@ Next.js app for **ShopGarage listing invoices**: generate a PDF from a listing U
 
 - Node.js 18+
 
-## Scripts
+## Getting started
 
-| Command | Description |
-|--------|-------------|
-| `npm install` | Install dependencies |
-| `npm run start` | Dev server (`next dev`) |
-| `npm run build` | Production build |
-| `npm run start:prod` | Run production build (`next start`) |
+1. Clone the repository and open the project root in a terminal.
+2. Install dependencies: `npm install`
+3. Start the dev server: `npm run start`
+4. Open [http://localhost:3000](http://localhost:3000), paste a ShopGarage listing URL (or listing UUID), then use **Download invoice** or **Email invoice**.
+
+For a production-style run locally: `npm run build` then `npm run start:prod`.
 
 ## HTTP API
 
-| Method | Path | Purpose |
-|--------|------|---------|
-| `POST` | `/api/invoice` | JSON body `{ "listingUrl": "<url or uuid>" }` → PDF stream |
+| Method | Path                 | Purpose                                                                 |
+| ------ | -------------------- | ----------------------------------------------------------------------- |
+| `POST` | `/api/invoice`       | JSON body `{ "listingUrl": "<url or uuid>" }` → PDF stream              |
 | `POST` | `/api/invoice/email` | JSON body `{ "listingUrl": "...", "to": "..." }` → sends email with PDF |
 
-Listing data is loaded from the Garage backend (`listingService` default base URL in code).
+Listing data is loaded from the Garage listings API; the server uses a base URL defined in `listingService` (see Configuration).
 
 ## Project layout
 
@@ -46,4 +46,7 @@ app/
 
 ## Configuration
 
-Email delivery uses Resend from `app/services/backend/emailService.ts`. For a real deployment, move the API key and sender address into environment variables instead of committing secrets.
+Today several values are hardcoded for a quick demo. For a real deployment, read them from **environment variables** (Next.js: `process.env.*` in server code, define values in `.env.local` for local dev and in your host’s env for production).
+
+- **Resend** (`app/services/backend/emailService.ts`): move the API key and the `from` address into env vars (for example `RESEND_API_KEY` and `EMAIL_FROM`) so they are not committed to git.
+- **Listings API base URL** (`app/services/backend/listingService.ts`): `DEFAULT_API_BASE` is currently a constant pointing at the Garage backend. The same value should become an env-driven setting (for example `GARAGE_API_BASE` or `LISTINGS_API_URL`) with a sensible default or validation at startup, so staging and production can target different hosts without code changes.

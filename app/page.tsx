@@ -11,7 +11,7 @@ import {
 } from "react";
 import { extractListingUuid } from "@/app/lib/extractListingUuid";
 import { isValidEmail } from "@/app/lib/isValidEmail";
-import { downloadListingInvoice, emailListingInvoice } from "@/app/services/frontend/listings/invoice";
+import { downloadListingInvoice, emailListingInvoice } from "@/app/services/frontend/listings/invoiceService";
 import { Alert } from "@/app/uiKit/Alert";
 import { Button } from "@/app/uiKit/Button";
 import { TextField } from "@/app/uiKit/TextField";
