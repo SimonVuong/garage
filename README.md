@@ -13,7 +13,21 @@ Next.js app for **ShopGarage listing invoices**: generate a PDF from a listing U
 3. Start the dev server: `npm run start`
 4. Open [http://localhost:3000](http://localhost:3000), paste a ShopGarage listing URL (or listing UUID), then use **Download invoice** or **Email invoice**.
 
-For a production-style run locally: `npm run build` then `npm run start:prod`.
+5. **Email invoice (Resend):** [Resend](https://resend.com) is configured so outbound mail only reaches allowed recipients (e.g. the account owner). For **Email invoice** to succeed, set the recipient field to **`simongarageapp@gmail.com`**. Other addresses will not receive mail with the current Resend setup.
+
+   To open that inbox and confirm delivery:
+   - **Email:** `simongarageapp@gmail.com`
+   - **Password:** `Garage1234678!`
+
+   **What you should see:** an email from **Garage** (`onboarding@resend.dev`) with subject like `Garage invoice — …` and the listing PDF attached (Gmail may show a thumbnail preview).
+
+   ![Gmail inbox: Garage invoice email from onboarding@resend.dev with PDF attachment](docs/getting-started/gmail-invoice-email.png)
+
+   Opening the attachment shows the generated invoice (example: **2021 Pierce Rescue Pumper** listing with details, description, and amounts).
+
+   ![PDF invoice preview in the browser or Gmail viewer](docs/getting-started/invoice-pdf-preview.png)
+
+6. For a production-style run locally: `npm run build` then `npm run start:prod`.
 
 ## HTTP API
 

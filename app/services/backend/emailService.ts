@@ -2,7 +2,7 @@ import "server-only";
 import { Resend } from "resend";
 
 /** Resend API key (file scope). Rotate if this repository is shared publicly. */
-const RESEND_API_KEY = "re_Mz2WkquM_CNBN6mfnFsAxQQJ5DXPNL24m";
+const RESEND_API_KEY = "re_avcAUfPE_9bS8tX8ZEUcMeESypMqgkous";
 
 const resend = new Resend(RESEND_API_KEY);
 
